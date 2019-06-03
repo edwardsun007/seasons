@@ -6,7 +6,8 @@ class App extends Component {
     super(props);
 
     this.state = {
-      lat: null
+      lat: null,
+      errorMsg: ""
     }; // initialize state
 
     window.navigator.geolocation.getCurrentPosition(
@@ -14,12 +15,28 @@ class App extends Component {
         this.setState({ lat: position.coords.latitude });
         // never do !  this.state.lat = position.coords.latitude !!! never do this unless you initialize it
       },
-      error => console.log(error)
+      error => {
+        this.setState({ errorMsg: error.message });
+      }
     );
   }
 
+  componentDidMount() {
+    console.log("My component was rendered to the screen");
+  }
+
+  componentDidUpdate() {
+    console.log("My component was just updated - rerendered!");
+  }
+
   render() {
-    return <div>Latitude: {this.state.lat}</div>;
+    if (this.state.errorMsg && !this.state.lat) {
+      return <div>Error: {this.state.errorMsg}</div>;
+    } else if (!this.state.errorMsg && this.state.lat) {
+      return <div>Latitude: {this.state.lat}</div>;
+    } else {
+      return <div>Loading...</div>;
+    }
   }
 }
 
