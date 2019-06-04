@@ -1,4 +1,8 @@
 import React from "react";
+import "./seasonDisplay.css";
+/* this doesn't mean that we simply import everything from css file into this js file!
+Webpack works for me behind the scene grab everything in the css and put it into index.html
+*/
 
 const seasonConfig = {
   Summer: {
@@ -32,14 +36,10 @@ const SeasonDisplay = props => {
   //     : seasonConfig.summer.iconName;
 
   return (
-    <div>
-      <h1>
-        <i className={`large ${iconName} icon`} />
-        <br />
-        {text}
-        <br />
-        <i className={`large ${iconName} icon`} />
-      </h1>
+    <div className={`season-display ${season}`}>
+      <i className={`icon-left massive ${iconName} icon`} />
+      <h1>{text}</h1>
+      <i className={`icon-right massive ${iconName} icon`} />
     </div>
   );
 };
