@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import SeasonDisplay from "./SeasonDisplay";
+import SeasonDisplay from "./components/SeasonDisplay";
+import Spinner from "./components/Spinner";
 
 class App extends Component {
   // constructor(props) {
@@ -42,7 +43,7 @@ class App extends Component {
       be passed */
       }
     } else {
-      return <div>Loading...</div>;
+      return <Spinner />;
     }
   }
 }
