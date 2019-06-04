@@ -1,5 +1,16 @@
 import React from "react";
 
+const seasonConfig = {
+  Summer: {
+    text: "Lets hit the beach!",
+    iconName: "sun"
+  },
+  Winter: {
+    text: "Burr, it is chilly~~",
+    iconName: "snowflake"
+  }
+};
+
 const getSeason = (lat, month) => {
   console.log();
   if (month > 2 && month < 9) {
@@ -11,16 +22,23 @@ const getSeason = (lat, month) => {
 
 const SeasonDisplay = props => {
   const season = getSeason(props.lat, new Date().getMonth());
+  const { text, iconName } = seasonConfig[season]; // nice way to make both seasonConfig and getSeason dynamic, try destructor always when possible
   //console.log(season);
-  const seasonTxt =
-    season === "Winter" ? "Burr, it is chilly~~" : "Let's hit the beach!";
-  const icon = season === "Winter" ? "snowflake icon" : "sun icon";
+  // const seasonTxt =
+  //   season === "Winter" ? text : seasonConfig.summer.text;
+  // const icon =
+  //   season === "Winter"
+  //     ? seasonConfig.winter.iconName
+  //     : seasonConfig.summer.iconName;
 
   return (
     <div>
       <h1>
-        <i className={icon} />
-        {seasonTxt}
+        <i className={`large ${iconName} icon`} />
+        <br />
+        {text}
+        <br />
+        <i className={`large ${iconName} icon`} />
       </h1>
     </div>
   );
