@@ -33,7 +33,7 @@ class App extends Component {
     console.log("My component was just updated - rerendered!");
   }
 
-  render() {
+  renderContent() {
     if (this.state.errorMsg && !this.state.lat) {
       return <div>Error: {this.state.errorMsg}</div>;
     } else if (!this.state.errorMsg && this.state.lat) {
@@ -43,8 +43,12 @@ class App extends Component {
       be passed */
       }
     } else {
-      return <Spinner />;
+      return <Spinner text="Please accept location request..." />;
     }
+  }
+
+  render() {
+    return <div className="bordrer red">{this.renderContent()}</div>;
   }
 }
 
